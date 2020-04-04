@@ -1,9 +1,7 @@
 package com.intecsec.mall.user.api;
 
-import com.intecsec.mall.common.utils.DOUtils;
 import com.intecsec.mall.user.dto.UserDTO;
-import com.intecsec.mall.user.entity.User;
-import com.intecsec.mall.user.mapper.UserMapper;
+import com.intecsec.mall.user.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,30 +17,26 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserManager userManager;
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public UserDTO getUser(@PathVariable Long userId) {
-        User user = userMapper.selectByPrimaryKey(userId);
-        return DOUtils.copy(user, UserDTO.class);
+        return userManager.getUser(userId);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<UserDTO> getUserList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                      @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize) {
-        int offset = (page - 1) * pageSize;
-        List<User> userList = userMapper.getList(offset, pageSize);
-        return DOUtils.copyList(userList, UserDTO.class);
+        return userManager.getUserList(page, pageSize);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.POST)
     public int update(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
-        User user = DOUtils.copy(userDTO, User.class);
-        return userMapper.updateByPrimaryKey(user);
+        return userManager.update(userId, userDTO);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     public int delete(@PathVariable Long userId) {
-        return userMapper.deleteByPrimaryKey(userId);
+        return userManager.delete(userId);
     }
 }

@@ -1,9 +1,7 @@
 package com.intecsec.mall.item.api;
 
-import com.intecsec.mall.common.utils.DOUtils;
 import com.intecsec.mall.item.ItemDTO;
-import com.intecsec.mall.item.entity.Item;
-import com.intecsec.mall.item.mapper.ItemMapper;
+import com.intecsec.mall.item.manager.ItemManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,19 +17,16 @@ import java.util.List;
 public class ItemService {
 
     @Autowired
-    private ItemMapper itemMapper;
+    private ItemManager itemManager;
 
     @RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
-    private ItemDTO itemDetail(@PathVariable Long itemId) {
-        Item item = itemMapper.selectByPrimaryKey(itemId);
-        return DOUtils.copy(item, ItemDTO.class);
+    public ItemDTO itemDetail(@PathVariable Long itemId) {
+        return itemManager.itemDetail(itemId);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    private List<ItemDTO> itemList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+    public List<ItemDTO> itemList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                    @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize) {
-        int offset = (page - 1) * pageSize;
-        List<Item> itemList = itemMapper.getList(offset, pageSize);
-        return DOUtils.copyList(itemList, ItemDTO.class);
+        return itemManager.itemList(page, pageSize);
     }
 }
