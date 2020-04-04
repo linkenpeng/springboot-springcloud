@@ -10,12 +10,16 @@
 
     <modules>
         <module>service-discover</module>
-        <module>mall-user</module>
         <module>mall-gateway</module>
         <module>common</module>
         <module>common-mysql</module>
         <module>mapper-generate</module>
+        <module>mall-user</module>
         <module>mall-user-client</module>
+        <module>mall-item</module>
+        <module>mall-item-client</module>
+        <module>mall-order</module>
+        <module>mall-order-client</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -54,6 +58,17 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-item-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>mall-order-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

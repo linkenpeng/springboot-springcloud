@@ -9,35 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-gateway</artifactId>
+    <artifactId>mall-item</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mall-user-client</artifactId>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-item-client</artifactId>
         </dependency>
+
+        <!-- 数据库mysql -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>mall-order-client</artifactId>
+            <artifactId>common-mysql</artifactId>
+            <type>pom</type>
         </dependency>
-
     </dependencies>
 
     <build>
