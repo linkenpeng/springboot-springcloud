@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @description:
+ * @description: Feign 是一个声明式的Web Service客户端， 目的是让webservice调用更简单
+ * Feign 整合了 Ribbon和Hystrix
  * @author: peter.peng
  * @create: 2020-03-22 10:28
  **/

@@ -3,6 +3,7 @@ package com.intecsec.mall.user.api;
 import com.intecsec.mall.user.dto.UserDTO;
 import com.intecsec.mall.user.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +20,14 @@ public class UserService {
     @Autowired
     private UserManager userManager;
 
+    @Value("${server.port}")
+    private int serverPort = 0;
+
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public UserDTO getUser(@PathVariable Long userId) {
-        return userManager.getUser(userId);
+        UserDTO userDTO = userManager.getUser(userId);
+        userDTO.setUserServicePort(serverPort);
+        return userDTO;
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

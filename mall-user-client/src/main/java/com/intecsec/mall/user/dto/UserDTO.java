@@ -30,4 +30,6 @@ public class UserDTO implements Serializable {
     private Date gmtUpdate;
 
     private Byte deleteMark;
+
+    private Integer userServicePort;
 }
