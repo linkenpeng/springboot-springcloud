@@ -1,6 +1,8 @@
 package com.intecsec.mall.user.api;
 
+import com.intecsec.mall.user.dto.UserConsigneeDTO;
 import com.intecsec.mall.user.dto.UserDTO;
+import com.intecsec.mall.user.manager.UserConsigneeManager;
 import com.intecsec.mall.user.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +21,9 @@ public class UserService {
 
     @Autowired
     private UserManager userManager;
+
+    @Autowired
+    private UserConsigneeManager userConsigneeManager;
 
     @Value("${server.port}")
     private int serverPort = 0;
@@ -44,5 +49,11 @@ public class UserService {
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     public int delete(@PathVariable Long userId) {
         return userManager.delete(userId);
+    }
+
+    @RequestMapping(value = "/consigee/{id}", method = RequestMethod.GET)
+    public UserConsigneeDTO getUserConsignee(@PathVariable Long id) {
+        UserConsigneeDTO userConsigneeDTO = userConsigneeManager.getOne(id);
+        return userConsigneeDTO;
     }
 }

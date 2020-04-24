@@ -48,6 +48,12 @@ public class RestResponse {
         return toJsonStr(apiResponse);
     }
 
+    public static ApiResponse succ(Object module){
+        ApiResponse apiResponse = new ApiResponse(ResponseEnum.REQUEST_SUCESS);
+        apiResponse.setData(module);
+        return apiResponse;
+    }
+
     public static String fail(ResponseEnum responseEnum) {
         return fail(responseEnum, responseEnum.getMsg());
     }

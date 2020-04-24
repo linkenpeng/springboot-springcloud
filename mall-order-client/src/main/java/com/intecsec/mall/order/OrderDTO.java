@@ -43,4 +43,6 @@ public class OrderDTO implements Serializable {
     private Byte deleteMark;
 
     private List<OrderItemDTO> orderItemList;
+
+    private OrderConsigneeDTO orderConsigneeDTO;
 }

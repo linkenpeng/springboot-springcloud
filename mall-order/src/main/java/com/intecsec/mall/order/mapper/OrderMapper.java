@@ -11,7 +11,7 @@ import java.util.List;
 public interface OrderMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(Order record);
+    long insert(Order record);
 
     int insertSelective(Order record);
 

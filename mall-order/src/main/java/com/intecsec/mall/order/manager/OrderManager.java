@@ -18,4 +18,6 @@ public interface OrderManager {
     OrderDTO getUserOrder(long id, long userId);
 
     List<OrderDTO> getUserOrderList(int page, int pageSize, long userId);
+
+    OrderDTO addOrder(OrderDTO orderDTO);
 }

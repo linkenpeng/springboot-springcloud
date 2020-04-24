@@ -6,7 +6,7 @@ import com.intecsec.mall.user.entity.User;
 import com.intecsec.mall.user.manager.UserManager;
 import com.intecsec.mall.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author: peter.peng
  * @create: 2020-04-04 22:36
  **/
-@Component
+@Repository
 public class UserManagerImpl implements UserManager {
 
     @Autowired

@@ -4,12 +4,16 @@ import com.intecsec.mall.common.utils.DOUtils;
 import com.intecsec.mall.order.OrderDTO;
 import com.intecsec.mall.order.OrderItemDTO;
 import com.intecsec.mall.order.entity.Order;
+import com.intecsec.mall.order.entity.OrderConsignee;
 import com.intecsec.mall.order.entity.OrderItem;
 import com.intecsec.mall.order.manager.OrderManager;
+import com.intecsec.mall.order.mapper.OrderConsigneeMapper;
 import com.intecsec.mall.order.mapper.OrderItemMapper;
 import com.intecsec.mall.order.mapper.OrderMapper;
+import com.intecsec.mall.order.util.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -30,6 +34,9 @@ public class OrderManagerImpl implements OrderManager {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private OrderConsigneeMapper orderConsigneeMapper;
 
     @Override
     public OrderDTO getOrder(long id) {
@@ -61,6 +68,25 @@ public class OrderManagerImpl implements OrderManager {
         int offset = getOffset(page, pageSize);
         List<Order> orderList = orderMapper.getUserOrderList(userId, offset, pageSize);
         return DOUtils.copyList(orderList, OrderDTO.class);
+    }
+
+    @Override
+    @Transactional(rollbackFor = {Exception.class})
+    public OrderDTO addOrder(OrderDTO orderDTO) {
+        Order order = new Order();
+        OrderConsignee orderConsignee = new OrderConsignee();
+        OrderItem orderItem = new OrderItem();
+
+        order.setOrderSn(OrderUtil.genOrderSn());
+        long orderId = orderMapper.insert(order);
+
+        orderConsignee.setOrderId(orderId);
+        orderConsigneeMapper.insert(orderConsignee);
+
+        orderItem.setOrderId(orderId);
+        orderItemMapper.insert(orderItem);
+
+        return orderDTO;
     }
 
     private int getOffset(int page, int pageSize) {

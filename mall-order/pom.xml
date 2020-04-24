@@ -39,6 +39,15 @@
             <artifactId>mall-order-client</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-user-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mall-item-client</artifactId>
+        </dependency>
+
         <!-- 数据库mysql -->
         <dependency>
             <groupId>${project.groupId}</groupId>
