@@ -34,6 +34,13 @@
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
 
+        <!-- 数据库mysql -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-mysql</artifactId>
+            <type>pom</type>
+        </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>mall-order-client</artifactId>
@@ -48,12 +55,6 @@
             <artifactId>mall-item-client</artifactId>
         </dependency>
 
-        <!-- 数据库mysql -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common-mysql</artifactId>
-            <type>pom</type>
-        </dependency>
     </dependencies>
 
     <build>

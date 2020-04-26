@@ -26,6 +26,8 @@ public class OrderItemDTO implements Serializable {
 
     private Integer itemNum;
 
+    private String itemName;
+
     private BigDecimal coupon;
 
     private Long couponAmout;

@@ -33,4 +33,10 @@ public class ItemManagerImpl implements ItemManager {
         List<Item> itemList = itemMapper.getList(offset, pageSize);
         return DOUtils.copyList(itemList, ItemDTO.class);
     }
+
+    @Override
+    public List<ItemDTO> getItemListByIds(List<Long> ids) {
+        List<Item> itemList = itemMapper.getListByIds(ids);
+        return DOUtils.copyList(itemList, ItemDTO.class);
+    }
 }

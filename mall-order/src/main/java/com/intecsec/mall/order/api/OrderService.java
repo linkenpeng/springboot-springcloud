@@ -1,15 +1,20 @@
 package com.intecsec.mall.order.api;
 
 import com.intecsec.mall.common.utils.DOUtils;
+import com.intecsec.mall.item.ItemDTO;
 import com.intecsec.mall.order.*;
 import com.intecsec.mall.order.manager.OrderManager;
+import com.intecsec.mall.order.service.ItemService;
 import com.intecsec.mall.order.service.UserService;
 import com.intecsec.mall.user.dto.UserConsigneeDTO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -25,6 +30,9 @@ public class OrderService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     private OrderDTO getOrder(@PathVariable Long id) {
@@ -57,18 +65,32 @@ public class OrderService {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setUserId(addOrderDTO.getUser_id());
 
-        List<OrderItemDTO> itemDTOS = new ArrayList<>();
+        List<Long> itemIds = new ArrayList<>();
+        Map<Long, Integer> itemNumberMap = new HashMap<>();
         for(AddOrderItemDTO addOrderItemDTO : addOrderDTO.getOrder_item_list()) {
+            itemIds.add(addOrderItemDTO.getItem_id());
+            itemNumberMap.put(addOrderItemDTO.getItem_id(), addOrderItemDTO.getNumber());
+        }
+
+        List<ItemDTO> itemDTOS = itemService.itemListByIds(StringUtils.join(itemIds, ","));
+
+        List<OrderItemDTO> orderItemDTOS = new ArrayList<>();
+        long orderPriceAmount = 0L;
+        for(ItemDTO itemDTO : itemDTOS) {
             OrderItemDTO orderItemDTO = new OrderItemDTO();
-            orderItemDTO.setItemId(addOrderItemDTO.getItem_id());
-            orderItemDTO.setItemNum(addOrderItemDTO.getNumber());
+            orderItemDTO.setItemId(itemDTO.getId());
+            orderItemDTO.setItemNum(itemNumberMap.get(itemDTO.getId()));
+            orderItemDTO.setItemPrice(itemDTO.getItemPrice());
+            orderItemDTO.setItemName(itemDTO.getItemName());
 
+            orderPriceAmount += itemDTO.getItemPrice();
 
-            itemDTOS.add(orderItemDTO);
+            orderItemDTOS.add(orderItemDTO);
         }
 
         orderDTO.setOrderConsigneeDTO(orderConsigneeDTO);
-        orderDTO.setOrderItemList(itemDTOS);
+        orderDTO.setOrderItemList(orderItemDTOS);
+        orderDTO.setPriceAmount(orderPriceAmount);
 
         return orderManager.addOrder(orderDTO);
     }

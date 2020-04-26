@@ -7,6 +7,7 @@
     <result column="item_id" jdbcType="BIGINT" property="itemId" />
     <result column="item_price" jdbcType="BIGINT" property="itemPrice" />
     <result column="item_num" jdbcType="INTEGER" property="itemNum" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemNum" />
     <result column="coupon" jdbcType="DECIMAL" property="coupon" />
     <result column="coupon_amout" jdbcType="BIGINT" property="couponAmout" />
     <result column="point_money" jdbcType="DECIMAL" property="pointMoney" />
@@ -18,7 +19,7 @@
     <result column="delete_mark" jdbcType="TINYINT" property="deleteMark" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, order_id, item_id, item_price, item_num, coupon, coupon_amout, point_money, point_amount, 
+    id, order_id, item_id, item_price, item_num, item_name, coupon, coupon_amout, point_money, point_amount,
     discount, discount_amount, gmt_created, gmt_update, delete_mark
   </sql>
 
@@ -46,12 +47,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into mall_order_item (order_id, item_id, item_price, 
-      item_num, coupon, coupon_amout, 
+      item_num, item_name, coupon, coupon_amout,
       point_money, point_amount, discount, 
       discount_amount, gmt_created, gmt_update, 
       delete_mark)
     values (#{orderId,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{itemPrice,jdbcType=BIGINT}, 
-      #{itemNum,jdbcType=INTEGER}, #{coupon,jdbcType=DECIMAL}, #{couponAmout,jdbcType=BIGINT}, 
+      #{itemNum,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{coupon,jdbcType=DECIMAL}, #{couponAmout,jdbcType=BIGINT},
       #{pointMoney,jdbcType=DECIMAL}, #{pointAmount,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL}, 
       #{discountAmount,jdbcType=BIGINT}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}, 
       #{deleteMark,jdbcType=TINYINT})
@@ -73,6 +74,9 @@
       </if>
       <if test="itemNum != null">
         item_num,
+      </if>
+      <if test="itemName != null">
+        item_name,
       </if>
       <if test="coupon != null">
         coupon,
@@ -114,6 +118,9 @@
       </if>
       <if test="itemNum != null">
         #{itemNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
       </if>
       <if test="coupon != null">
         #{coupon,jdbcType=DECIMAL},
@@ -159,6 +166,9 @@
       <if test="itemNum != null">
         item_num = #{itemNum,jdbcType=INTEGER},
       </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
       <if test="coupon != null">
         coupon = #{coupon,jdbcType=DECIMAL},
       </if>
@@ -195,6 +205,7 @@
       item_id = #{itemId,jdbcType=BIGINT},
       item_price = #{itemPrice,jdbcType=BIGINT},
       item_num = #{itemNum,jdbcType=INTEGER},
+      item_name = #{itemName,jdbcType=VARCHAR},
       coupon = #{coupon,jdbcType=DECIMAL},
       coupon_amout = #{couponAmout,jdbcType=BIGINT},
       point_money = #{pointMoney,jdbcType=DECIMAL},

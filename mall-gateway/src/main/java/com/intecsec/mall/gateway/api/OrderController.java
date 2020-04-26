@@ -1,8 +1,10 @@
 package com.intecsec.mall.gateway.api;
 
+import com.intecsec.mall.common.utils.JsonUtils;
 import com.intecsec.mall.common.utils.RestResponse;
 import com.intecsec.mall.gateway.service.UserService;
 import com.intecsec.mall.order.AddOrderDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,14 +20,15 @@ import javax.validation.Valid;
  **/
 @RestController
 @RequestMapping("/order")
+@Slf4j
 public class OrderController {
 
     @Autowired
     private UserService userService;
 
-
     @PostMapping(value = "/add")
     public Object addOrder(@RequestBody @Valid AddOrderDTO addOrderDTO) {
+        log.info("addOrderDTO:{}", JsonUtils.toJson(addOrderDTO));
         return RestResponse.success(addOrderDTO);
     }
 

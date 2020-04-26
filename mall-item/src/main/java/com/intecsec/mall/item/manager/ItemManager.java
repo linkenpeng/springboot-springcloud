@@ -14,4 +14,6 @@ public interface ItemManager {
     ItemDTO itemDetail(Long itemId);
 
     List<ItemDTO> itemList(int page, int pageSize);
+
+    List<ItemDTO> getItemListByIds(List<Long> ids);
 }

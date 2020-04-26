@@ -1,6 +1,8 @@
 # springboot-springcloud
 > 一个基于springboot、springcloud的项目，主要是用来快速搭建电商项目的微服务骨架
 
+说明：所有的功能都没有做参数强校验，也不考虑各种异常情况，在入参完整的情况下能够跑通流程
+
 简单的功能：
 
 - springcloud 服务注册，服务发现

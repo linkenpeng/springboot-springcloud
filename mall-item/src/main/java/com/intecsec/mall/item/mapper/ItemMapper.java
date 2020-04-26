@@ -21,4 +21,6 @@ public interface ItemMapper {
     int updateByPrimaryKey(Item record);
 
     List<Item> getList(@Param("offset") Integer offset, @Param("count") Integer count);
+
+    List<Item> getListByIds(@Param("ids") List<Long> ids);
 }

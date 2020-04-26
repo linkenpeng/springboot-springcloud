@@ -2,9 +2,12 @@ package com.intecsec.mall.item.api;
 
 import com.intecsec.mall.item.ItemDTO;
 import com.intecsec.mall.item.manager.ItemManager;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,4 +32,19 @@ public class ItemService {
                                    @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize) {
         return itemManager.itemList(page, pageSize);
     }
+
+
+    @RequestMapping(value = "/listByIds", method = RequestMethod.GET)
+    public List<ItemDTO> itemListByIds(@RequestParam(value = "item_ids", required = false, defaultValue = "") String itemIds) {
+        List<Long> ids = new ArrayList<>();
+        if(StringUtils.isNotEmpty(itemIds)) {
+            String idSplit[] = StringUtils.split(itemIds, ",");
+            for(String id : idSplit) {
+                ids.add(Long.parseLong(id));
+            }
+        }
+
+        return itemManager.getItemListByIds(ids);
+    }
+
 }

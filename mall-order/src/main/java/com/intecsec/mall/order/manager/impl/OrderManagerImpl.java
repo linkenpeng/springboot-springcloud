@@ -73,9 +73,8 @@ public class OrderManagerImpl implements OrderManager {
     @Override
     @Transactional(rollbackFor = {Exception.class})
     public OrderDTO addOrder(OrderDTO orderDTO) {
-        Order order = new Order();
-        OrderConsignee orderConsignee = new OrderConsignee();
-        OrderItem orderItem = new OrderItem();
+        Order order = DOUtils.copy(orderDTO, Order.class);
+        OrderConsignee orderConsignee = DOUtils.copy(orderDTO.getOrderConsigneeDTO(), OrderConsignee.class);
 
         order.setOrderSn(OrderUtil.genOrderSn());
         long orderId = orderMapper.insert(order);
@@ -83,8 +82,11 @@ public class OrderManagerImpl implements OrderManager {
         orderConsignee.setOrderId(orderId);
         orderConsigneeMapper.insert(orderConsignee);
 
-        orderItem.setOrderId(orderId);
-        orderItemMapper.insert(orderItem);
+        List<OrderItem> orderItems = DOUtils.copyList(orderDTO.getOrderItemList(), OrderItem.class);
+        for(OrderItem orderItem : orderItems) {
+            orderItem.setOrderId(orderId);
+            orderItemMapper.insert(orderItem);
+        }
 
         return orderDTO;
     }
