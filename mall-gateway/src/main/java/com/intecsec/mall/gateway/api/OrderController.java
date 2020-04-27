@@ -2,8 +2,10 @@ package com.intecsec.mall.gateway.api;
 
 import com.intecsec.mall.common.utils.JsonUtils;
 import com.intecsec.mall.common.utils.RestResponse;
+import com.intecsec.mall.gateway.service.OrderService;
 import com.intecsec.mall.gateway.service.UserService;
 import com.intecsec.mall.order.AddOrderDTO;
+import com.intecsec.mall.order.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +28,16 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderService orderService;
+
     @PostMapping(value = "/add")
     public Object addOrder(@RequestBody @Valid AddOrderDTO addOrderDTO) {
         log.info("addOrderDTO:{}", JsonUtils.toJson(addOrderDTO));
-        return RestResponse.success(addOrderDTO);
+
+        OrderDTO orderDTO = orderService.addOrder(addOrderDTO);
+
+        return RestResponse.success(orderDTO);
     }
 
 }

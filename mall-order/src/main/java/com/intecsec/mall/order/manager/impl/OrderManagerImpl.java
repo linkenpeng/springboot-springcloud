@@ -3,6 +3,7 @@ package com.intecsec.mall.order.manager.impl;
 import com.intecsec.mall.common.utils.DOUtils;
 import com.intecsec.mall.order.OrderDTO;
 import com.intecsec.mall.order.OrderItemDTO;
+import com.intecsec.mall.order.constant.OrderStatusEnum;
 import com.intecsec.mall.order.entity.Order;
 import com.intecsec.mall.order.entity.OrderConsignee;
 import com.intecsec.mall.order.entity.OrderItem;
@@ -74,18 +75,20 @@ public class OrderManagerImpl implements OrderManager {
     @Transactional(rollbackFor = {Exception.class})
     public OrderDTO addOrder(OrderDTO orderDTO) {
         Order order = DOUtils.copy(orderDTO, Order.class);
+        order.setOrderStatus(OrderStatusEnum.UN_PAID.getOrderStatus());
+
         OrderConsignee orderConsignee = DOUtils.copy(orderDTO.getOrderConsigneeDTO(), OrderConsignee.class);
 
         order.setOrderSn(OrderUtil.genOrderSn());
-        long orderId = orderMapper.insert(order);
+        long orderId = orderMapper.insertSelective(order);
 
         orderConsignee.setOrderId(orderId);
-        orderConsigneeMapper.insert(orderConsignee);
+        orderConsigneeMapper.insertSelective(orderConsignee);
 
         List<OrderItem> orderItems = DOUtils.copyList(orderDTO.getOrderItemList(), OrderItem.class);
         for(OrderItem orderItem : orderItems) {
             orderItem.setOrderId(orderId);
-            orderItemMapper.insert(orderItem);
+            orderItemMapper.insertSelective(orderItem);
         }
 
         return orderDTO;

@@ -20,6 +20,6 @@ public interface UserService {
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
     UserDTO getUser(@PathVariable("userId") Long userId);
 
-    @RequestMapping(value = "/consigee/{id}", method = RequestMethod.GET)
-    UserConsigneeDTO getUserConsignee(@PathVariable Long id);
+    @RequestMapping(value = "/user/consigee/{id}", method = RequestMethod.GET)
+    UserConsigneeDTO getUserConsignee(@PathVariable("id") Long id);
 }
