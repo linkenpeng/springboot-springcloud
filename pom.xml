@@ -20,6 +20,8 @@
         <module>mall-item-client</module>
         <module>mall-order</module>
         <module>mall-order-client</module>
+        <module>zuul-server</module>
+        <module>hystrix-dashboard</module>
     </modules>
 
     <packaging>pom</packaging>

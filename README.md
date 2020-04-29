@@ -16,4 +16,17 @@ user-service: 2100
 item-service: 2200
 order-service: 2300
 gateway-service: 2000
+hystrix-dashboard: 2001
+zuul-server: 2002
+```
+
+### 入口访问（是否启用zuul)
+如果启用了zuul-server, 则访问入口为（统一API网关）：
+```
+http://localhost:2008/gateway-service/user/1
+```
+
+如果没有启用zuul-server，则访问入口为（gateway入口)：
+```
+http://localhost:2000//user/1
 ```
