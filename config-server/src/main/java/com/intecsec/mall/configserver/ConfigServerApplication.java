@@ -1,20 +1,21 @@
-package com.intecsec.mall.user;
+package com.intecsec.mall.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
  * @description:
  * @author: peter.peng
- * @create: 2020-03-22 10:03
+ * @create: 2020-05-17 11:19
  **/
 @SpringBootApplication
-//@EnableDiscoveryClient
-//@EnableCircuitBreaker
-public class UserApplication {
+@EnableConfigServer
+@EnableDiscoveryClient
+public class ConfigServerApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(UserApplication.class, args);
+        SpringApplication.run(ConfigServerApplication.class, args);
     }
 }

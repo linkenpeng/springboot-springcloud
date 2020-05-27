@@ -18,6 +18,8 @@ order-service: 2300
 gateway-service: 2000
 hystrix-dashboard: 2001
 zuul-server: 2002
+config-server: 2003
+zipkin-server: 2004
 ```
 
 ### 入口访问（是否启用zuul)

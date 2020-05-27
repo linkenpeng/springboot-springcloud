@@ -3,6 +3,7 @@ package com.intecsec.mall.gateway.api;
 import com.intecsec.mall.common.utils.RestResponse;
 import com.intecsec.mall.gateway.service.UserService;
 import com.intecsec.mall.user.dto.UserDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
  **/
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -27,6 +29,8 @@ public class UserController {
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     @ResponseBody
     public Object getUserName(@PathVariable Long userId) {
+        log.info("获取用户信息userId:{}", userId);
+
         UserDTO userDTO = userService.getUser(userId);
         // UserDTO userDTO = restTemplate.getForEntity("http://user-service/user/{userId}", UserDTO.class, userId).getBody();
         return RestResponse.success(userDTO);
