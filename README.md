@@ -9,18 +9,23 @@
 - 分为商品微服务，用户微服务，活动微服务，交易微服务
 - 统一的的gateway，包括签名，统一输出，统一异常
 
-### 各个服务的端口
-```
-service-discover: 8260
-user-service: 2100
-item-service: 2200
-order-service: 2300
-gateway-service: 2000
-hystrix-dashboard: 2001
-zuul-server: 2002
-config-server: 2003
-zipkin-server: 2004
-```
+### Require Components
+- MySQL5.6+
+
+### Application Port
+
+Application | Port |    
+-:|-:|
+service-discover | 8260 |
+user-service | 2100 |
+item-service | 2200 |
+order-service | 2300 |
+gateway-service | 2000 |
+hystrix-dashboard | 2001 |
+zuul-server | 2002 |
+config-server | 2003 |
+zipkin-server | 2004 |
+
 
 ### 入口访问（是否启用zuul)
 如果启用了zuul-server, 则访问入口为（统一API网关）：
@@ -30,7 +35,7 @@ http://localhost:2008/gateway-service/user/1
 
 如果没有启用zuul-server，则访问入口为（gateway入口)：
 ```
-http://localhost:2000//user/1
+http://localhost:2000/user/1
 ```
 
 ### 微信公众号: 互联网技术的秘密 （intecsec）
