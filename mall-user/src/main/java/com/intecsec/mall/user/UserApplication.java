@@ -11,8 +11,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @create: 2020-03-22 10:03
  **/
 @SpringBootApplication
-//@EnableDiscoveryClient
-//@EnableCircuitBreaker
+@EnableDiscoveryClient
+@EnableCircuitBreaker
 public class UserApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserApplication.class, args);
