@@ -2,7 +2,6 @@ package com.intecsec.mall.order.entity;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -19,15 +18,11 @@ public class OrderItem {
 
     private String itemName;
 
-    private BigDecimal coupon;
+    private Long actualPrice;
 
-    private Long couponAmout;
+    private Long couponAmount;
 
-    private BigDecimal pointMoney;
-
-    private Integer pointAmount;
-
-    private BigDecimal discount;
+    private Long pointAmount;
 
     private Long discountAmount;
 

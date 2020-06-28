@@ -6,6 +6,8 @@ import com.intecsec.mall.user.dto.UserDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @description: Feign 是一个声明式的Web Service客户端， 目的是让webservice调用更简单
  * Feign 整合了 Ribbon和Hystrix
@@ -17,4 +19,19 @@ public interface OrderService {
 
     @PostMapping("/order/add")
     OrderDTO addOrder(@RequestBody AddOrderDTO addOrderDTO);
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    OrderDTO getOrder(@PathVariable Long id);
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    List<OrderDTO> getOrderList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                       @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize);
+
+    @RequestMapping(value = "/{id}/{userId}", method = RequestMethod.GET)
+    OrderDTO getUserOrder(@PathVariable Long id, @PathVariable Long userId);
+
+    @RequestMapping(value = "/list/{userId}", method = RequestMethod.GET)
+    List<OrderDTO> getUserOrderList(@PathVariable Long userId, @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                           @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize);
 }

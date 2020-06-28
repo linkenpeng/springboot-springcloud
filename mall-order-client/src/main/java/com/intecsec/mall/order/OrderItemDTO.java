@@ -3,7 +3,6 @@ package com.intecsec.mall.order;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,7 +15,7 @@ public class OrderItemDTO implements Serializable {
 
     private static final long serialVersionUID = 7736501051774467112L;
 
-    private Integer id;
+    private Long id;
 
     private Long orderId;
 
@@ -28,15 +27,11 @@ public class OrderItemDTO implements Serializable {
 
     private String itemName;
 
-    private BigDecimal coupon;
+    private Long actualPrice;
 
-    private Long couponAmout;
+    private Long couponAmount;
 
-    private BigDecimal pointMoney;
-
-    private Integer pointAmount;
-
-    private BigDecimal discount;
+    private Long pointAmount;
 
     private Long discountAmount;
 
