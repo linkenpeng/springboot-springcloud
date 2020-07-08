@@ -2,8 +2,7 @@ package com.intecsec.mall.gateway.service;
 
 import com.intecsec.mall.order.AddOrderDTO;
 import com.intecsec.mall.order.OrderDTO;
-import com.intecsec.mall.user.dto.UserDTO;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

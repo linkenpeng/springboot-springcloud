@@ -1,5 +1,6 @@
 package com.intecsec.mall.service;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
@@ -14,7 +15,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 public class DiscoverApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(DiscoverApplication.class).web(true).run(args);
+        SpringApplication.run(DiscoverApplication.class, args);
     }
 
 }
