@@ -1,6 +1,6 @@
 package com.intecsec.mall.zuulserver.fallback;
 
-import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.client.ClientHttpResponse;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.http.client.ClientHttpResponse;
  * @author: peter.peng
  * @create: 2020-04-29 10:40
  **/
-public class UserServiceFallbackProvider implements ZuulFallbackProvider {
+public class UserServiceFallbackProvider implements FallbackProvider {
 
     @Override
     public String getRoute() {
@@ -16,7 +16,7 @@ public class UserServiceFallbackProvider implements ZuulFallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse() {
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         return null;
     }
 }
