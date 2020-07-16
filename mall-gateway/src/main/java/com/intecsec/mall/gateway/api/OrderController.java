@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/order")
 @Slf4j
-public class OrderController {
+public class OrderController  {
 
     @Autowired
     private UserService userService;
@@ -39,6 +39,7 @@ public class OrderController {
     public Object addOrder(@RequestBody @Valid AddOrderDTO addOrderDTO) {
         log.info("addOrderDTO:{}", JsonUtils.toJson(addOrderDTO));
 
+        addOrderDTO.setUser_id(1L);
         OrderDTO orderDTO = orderService.addOrder(addOrderDTO);
 
         return RestResponse.success(orderDTO);

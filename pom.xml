@@ -54,7 +54,7 @@
         <commons.codec.version>1.14</commons.codec.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <spring.clound.version>Hoxton.SR6</spring.clound.version>
-        <zipkin.version>2.10.1</zipkin.version>
+        <zipkin.version>2.12.9</zipkin.version>
     </properties>
 
     <dependencyManagement>

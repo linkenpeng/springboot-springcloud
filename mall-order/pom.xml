@@ -34,6 +34,12 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+
         <!-- 数据库mysql -->
         <dependency>
             <groupId>${project.groupId}</groupId>
