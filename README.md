@@ -1,11 +1,13 @@
-# springboot-springcloud
-> 一个基于springboot、springcloud的项目，主要是用来快速搭建电商项目的微服务骨架。
+# Spring Boot - Spring Cloud
+> 一个基于Spring Boot、Spring Cloud的项目，用来快速搭建电商项目微服务骨架。
 说明：所有的功能都没有做参数强校验，也不考虑各种异常情况，在入参完整的情况下能够跑通流程。
 
-##### 相关文章：[JavaEE 电商系统微服务开发骨架（dubbo版）](https://mp.weixin.qq.com/s/Fk0h5ba0pLE7KXLGkK4gfQ)
+##### 姊妹文章：[JavaEE 电商系统微服务开发骨架（dubbo版）](https://mp.weixin.qq.com/s/Fk0h5ba0pLE7KXLGkK4gfQ)
+
+> 当你选择微服务架构时，可以选择Dubbo, 也可以选择Spring Cloud。
 
 ### 功能介绍：
-- 基于SpringCloud Eureka的 服务注册，服务发现。
+- 基于Spring Cloud Eureka 的服务注册，服务发现。
 - 分为商品微服务，用户微服务，交易微服务。
 - 统一的的gateway，包括签名，统一输出，统一异常。
 
@@ -16,6 +18,9 @@
 - 集成Spring Boot(2.2.8.RELEASE)
 - 整合Mybatis, Mybatis Generator
 - 整合SpringCloud(Hoxton.SR6)
+- 整合Hystrix
+- 整合Zuul
+- 整合ZipKin
 - Maven多模块
 - 整合Response统一输出，方便Controller层使用
 - 拆分多个系统discover, item, order, user, zuul等
