@@ -6,12 +6,9 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * 解析店铺的Id示例Filter
- */
 @Component
 public class JWTTokenFilter extends ZuulFilter{
-    private static final int      FILTER_ORDER =  1;
+    private static final int FILTER_ORDER = 1;
 
     @Autowired
     private FilterUtils filterUtils;
@@ -41,8 +38,9 @@ public class JWTTokenFilter extends ZuulFilter{
      * @return
      */
     private void parseJWTToken(){
-        if (null == filterUtils.getAuthToken())
+        if (null == filterUtils.getAuthToken()) {
             return;
+        }
 
         String authToken = filterUtils.getAuthToken().replace("bearer ","");
         try {

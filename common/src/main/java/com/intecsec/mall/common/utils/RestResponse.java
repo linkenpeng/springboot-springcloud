@@ -29,7 +29,7 @@ public class RestResponse {
     static{
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.disableHtmlEscaping();//禁止html转义
+        gsonBuilder.disableHtmlEscaping();
         gson = gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     }
 

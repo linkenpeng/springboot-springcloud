@@ -3,8 +3,6 @@ package com.intecsec.mall.common.utils;
 import com.google.gson.*;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.OutputStreamWriter;
-import java.io.Reader;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
@@ -31,17 +29,11 @@ public class JsonUtils {
 
 	public static Gson createGson() {
 		GsonBuilder gb = new GsonBuilder();
-		// 禁止html转义
 		gb.disableHtmlEscaping();
-		// 处理下划线分割的json字符串（生成json字符串时候将驼峰转化为下划线，解析json时候将下划线转为驼峰）
 		gb.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-		// 设置json时间格式
 		// gb.setDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		// Date统一用long（毫秒）来表示 -- 序列化、反序列化都是
 		gb.registerTypeAdapter(Date.class, new DateSerializer()).setDateFormat(DateFormat.LONG);
 		gb.registerTypeAdapter(Date.class, new DateDeserializer()).setDateFormat(DateFormat.LONG);
-
 		return gb.create();
 	}
 
@@ -84,45 +76,6 @@ public class JsonUtils {
 		return map;
 	}
 
-	/**
-	 * json反序列化成特定泛型的对象
-	 * 
-	 * @deprecated 请先确定其他指定Class的方法是否满足需求，例如：parseListJson(String, Class)
-	 */
-	public static final <T> T parseJson(String jsonStr, Type typeOfT) {
-		return gson.fromJson(jsonStr, typeOfT);
-	}
-
-	// public static <T> T parseListJson(String listStr, Type type) {
-	// T objList = gson.fromJson(listStr, type);
-	// return objList;
-	// }
-
-	/**
-	 * @deprecated 建议使用parseListJson(..)方法
-	 */
-	public static final JsonArray parseJsonArray(String jsonStr) {
-		return new JsonParser().parse(jsonStr).getAsJsonArray();
-	}
-
-	/** @deprecated */
-	public static final void toJson(Object t, Type typeOfSrc, OutputStreamWriter writer) {
-		gson.toJson(t, typeOfSrc, writer);
-	}
-
-	/** @deprecated */
-	public static final void toJson(Object t, OutputStreamWriter writer) {
-		gson.toJson(t, writer);
-	}
-
-	/** @deprecated */
-	public static final <T> T parseJson(Reader json, Class<T> typeOfT) {
-		return gson.fromJson(json, typeOfT);
-	}
-
-	/**
-	 * Gson序列化Date类型
-	 */
 	public static final class DateSerializer implements JsonSerializer<Date> {
 
 		@Override
@@ -132,9 +85,6 @@ public class JsonUtils {
 
 	}
 
-	/**
-	 * Gson反序列化Date类型
-	 */
 	public static final class DateDeserializer implements JsonDeserializer<Date> {
 
 		@Override
@@ -163,9 +113,6 @@ public class JsonUtils {
 
 	}
 
-	/**
-	 * ArrayList 泛型识别器
-	 */
 	private static final class ArrayT<T> {
 
 		private Class<T> clz;
@@ -195,9 +142,6 @@ public class JsonUtils {
 
 	}
 
-	/**
-	 * Map 泛型识别器
-	 */
 	private static final class MapT<K, V> {
 
 		private Class<K> clzK;

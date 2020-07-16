@@ -35,7 +35,7 @@ public class OrderService {
     private ItemService itemService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public OrderDTO getOrder(@PathVariable Long id) {
+    public OrderDTO getOrder(@PathVariable(value = "id") Long id) {
         return orderManager.getOrder(id);
     }
 

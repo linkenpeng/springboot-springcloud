@@ -19,17 +19,17 @@ public interface OrderService {
     @PostMapping("/order/add")
     OrderDTO addOrder(@RequestBody AddOrderDTO addOrderDTO);
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    OrderDTO getOrder(@PathVariable Long id);
+    @RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
+    OrderDTO getOrder(@PathVariable(value="id") Long id);
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/list", method = RequestMethod.GET)
     List<OrderDTO> getOrderList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize);
 
-    @RequestMapping(value = "/{id}/{userId}", method = RequestMethod.GET)
-    OrderDTO getUserOrder(@PathVariable Long id, @PathVariable Long userId);
+    @RequestMapping(value = "/order/{id}/{userId}", method = RequestMethod.GET)
+    OrderDTO getUserOrder(@PathVariable(value="id")  Long id, @PathVariable(value="userId")  Long userId);
 
-    @RequestMapping(value = "/list/{userId}", method = RequestMethod.GET)
-    List<OrderDTO> getUserOrderList(@PathVariable Long userId, @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+    @RequestMapping(value = "/order/list/{userId}", method = RequestMethod.GET)
+    List<OrderDTO> getUserOrderList(@PathVariable(value="userId")  Long userId, @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                            @RequestParam(value = "pageSize", required = false, defaultValue = "2") int pageSize);
 }

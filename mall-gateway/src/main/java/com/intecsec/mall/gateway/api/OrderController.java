@@ -52,7 +52,7 @@ public class OrderController {
     }
 
     @ResponseBody
-    @GetMapping("/get/{orderId}")
+    @GetMapping("/{orderId}")
     public Object getOrder(@PathVariable Long orderId) {
         return RestResponse.success(orderService.getOrder(orderId));
     }
@@ -66,7 +66,7 @@ public class OrderController {
     }
 
     @ResponseBody
-    @GetMapping("/user/get/{orderId}")
+    @GetMapping("/user/{orderId}")
     public Object getUserOrder(@PathVariable Long orderId) {
         long userId = 1;
         return RestResponse.success(orderService.getUserOrder(userId, orderId));
