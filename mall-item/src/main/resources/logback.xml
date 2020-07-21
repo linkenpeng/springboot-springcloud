@@ -3,6 +3,8 @@
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
 	<property name="LOG_HOME" value="/data/java/logs/intecsec/springcloud/item"/>
+
+	<!-- LOG_LEVEL_PATTERN:-%5p [ApplicationName, TraceId, SpanId, Exportable] -->
 	<property name="CONSOLE_LOG_PATTERN"
 			  value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}" />
 
