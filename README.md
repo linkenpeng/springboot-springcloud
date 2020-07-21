@@ -61,9 +61,13 @@ java -jar mall-gateway/target/mall-zuul-1.0-SNAPSHOT.jar
 ```
 
 ### 入口访问（是否启用zuul)
+eureka注册中心：
+```
+http://localhost:8260
+```
 如果启用了zuul-server, 则访问入口为（统一API网关）：
 ```
-http://localhost:2008/gateway-service/user/1
+http://localhost:2000/gateway-service/user/1
 ```
 
 如果没有启用zuul-server，则访问入口为（gateway入口)：
