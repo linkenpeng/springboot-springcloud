@@ -20,6 +20,7 @@
 - 整合SpringCloud(Hoxton.SR6)
 - 整合Hystrix
 - 整合Zuul
+- 整合Sleuth
 - 整合ZipKin
 - Maven多模块
 - 整合Response统一输出，方便Controller层使用
