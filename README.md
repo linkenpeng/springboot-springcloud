@@ -40,9 +40,10 @@ item-service | 2200 |
 order-service | 2300 |
 gateway-service | 2000 |
 hystrix-dashboard | 2001 |
-zuul-server | 2002 |
+auth-server | 2002 |
 config-server | 2003 |
 zipkin-server | 2004 |
+zuul-server | 2008 |
 
 
 ### Run Application

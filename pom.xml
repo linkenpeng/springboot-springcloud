@@ -24,6 +24,7 @@
         <module>hystrix-dashboard</module>
         <module>config-server</module>
         <module>zipkin-server</module>
+        <module>auth-server</module>
     </modules>
 
     <packaging>pom</packaging>
